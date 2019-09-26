@@ -2,14 +2,9 @@ require 'sinatra'
 require "sinatra/json"
 require 'active_record'
 require 'mysql2'
+require 'yaml'
 
-ActiveRecord::Base.establish_connection(
-  adapter:  'mysql2',
-  database: 'test',
-  username: 'root',
-  password: '',
-  host:     'mysql'
-)
+ActiveRecord::Base.establish_connection(YAML.load_file('config/database.yml'))
 
 require './app/models/thing.rb'
 
