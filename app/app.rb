@@ -1,4 +1,5 @@
 require 'sinatra'
+require "sinatra/json"
 require 'active_record'
 require 'mysql2'
 
@@ -17,5 +18,9 @@ get '/' do
 end
 
 get '/things' do
-  Thing.all
+  json Thing.all
+end
+
+post '/things' do
+  json Thing.create
 end
